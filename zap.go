@@ -22,7 +22,8 @@ func NewContext(ctx context.Context, l zap.Logger) context.Context {
 }
 
 func FromContext(ctx context.Context) (zap.Logger, bool) {
-	return ctx.Value(zapKey{}).(zap.Logger)
+	l, ok := ctx.Value(zapKey{}).(zap.Logger)
+	return l, ok
 }
 
 func MustFromContext(ctx context.Context) zap.Logger {
