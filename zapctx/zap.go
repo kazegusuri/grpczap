@@ -1,4 +1,4 @@
-package grpczap
+package zapctx
 
 import (
 	"github.com/uber-go/zap"
@@ -6,16 +6,6 @@ import (
 )
 
 type zapKey struct{}
-
-var logger zap.Logger
-
-func init() {
-	logger = zap.NewJSON()
-}
-
-func SetLogger(l zap.Logger) {
-	logger = l
-}
 
 func NewContext(ctx context.Context, l zap.Logger) context.Context {
 	return context.WithValue(ctx, zapKey{}, l)
